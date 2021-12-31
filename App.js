@@ -1,11 +1,12 @@
 import React from 'react';
+import { render } from 'react-dom';
 import { StyleSheet, Text, View, Button, FlatList, SafeAreaView, TouchableOpacity} from 'react-native';
 import { LecHall, HeaderBar } from './Components';
 
 export default function App() {
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View>
         <HeaderBar/>
       </View>
@@ -14,13 +15,13 @@ export default function App() {
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Time</Text>
         </TouchableOpacity>
-
+        <View style={{flex: 3}}></View>
         <TouchableOpacity style={styles.button}>
-          <Text>Filter!</Text>
+          <Text style={styles.buttonText}>Filter</Text>
         </TouchableOpacity>
       </View>
 
-      <SafeAreaView style={styles.listHalls}>
+      <View style={styles.listHalls}>
         <FlatList
         showsVerticalScrollIndicator ={false}
         data={DATA}
@@ -29,9 +30,9 @@ export default function App() {
           <LecHall name={item.title} distance={item.distance} availability={item.availability}/>
         )}>
         </FlatList>
-      </SafeAreaView>
+      </View>
 
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -44,8 +45,9 @@ const styles = StyleSheet.create({
     opacity: 0.83,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 40,
-    paddingBottom: 10,
+    paddingTop: 5,
+    paddingBottom: 5,
+    flex: 1
   },
 
   textInList: {
@@ -54,7 +56,8 @@ const styles = StyleSheet.create({
   },
 
   listHalls: {
-    width: '90%'
+    width: '90%',
+    flex: 4
   },
 
   listItem: {
@@ -71,20 +74,22 @@ const styles = StyleSheet.create({
   },
 
   filterAndTimeBar: {
-    flex: 1,
-    paddingTop: 5,
-    paddingBottom: 5,
+    alignContent: 'space-around',
+    justifyContent: 'space-evenly',
+    margin: 10,
     flexDirection: 'row',
+    width: '85%'
   },
 
   button: {
     alignItems: "center",
-    backgroundColor: "#DDDDDD",
     padding: 5,
+    height: 30,
+    flex: 1,
   },
 
   buttonText: {
-    color: 'white',
+    color: 'black',
     fontSize: 16,
     fontWeight: 'bold',
 
@@ -92,6 +97,8 @@ const styles = StyleSheet.create({
 
 
 });
+
+
 
 const DATA = [
   {

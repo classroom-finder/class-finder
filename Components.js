@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     headerBar: {
-        paddingTop: 80,
-        paddingBottom: 20,
+        paddingTop: 60,
+        paddingBottom: 15,
     },
 
     lecHallItem: {
