@@ -42,7 +42,7 @@ export class HeaderBar extends React.Component {
 export class filterButton extends React.Component {
     render() {
         return 
-        <View style={}>
+        <View>
 
         </View>
     }
