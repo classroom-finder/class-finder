@@ -48,6 +48,15 @@ export class filterButton extends React.Component {
     }
 }
 
+export class dateButton extends React.Component {
+    render() {
+        return
+        <View>
+            
+        </View>
+    }
+}
+
 
 const styles = StyleSheet.create({
     headerBarText: {
