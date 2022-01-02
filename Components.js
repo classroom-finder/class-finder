@@ -1,6 +1,8 @@
 import React from 'react';
 import {useState} from 'react';
-import { StyleSheet, Text, View, Image, Button, FlatList, SafeAreaView, Modal} from 'react-native';
+import { StyleSheet, Text, View, Image, Button, FlatList, SafeAreaView, Modal, TouchableOpacity} from 'react-native';
+
+const filterIcon = require('./assets/filter-icon.png');
 
 
 
@@ -41,7 +43,7 @@ export class HeaderBar extends React.Component {
     }
 }
 
-export class filterButton extends React.Component{
+export class FilterButton extends React.Component{
     constructor(){
         super();
         this.state = {show:false}
@@ -49,14 +51,22 @@ export class filterButton extends React.Component{
     render() {
         return(
             <View>
-            <Button title = "Filter" onPress={()=>{this.setState({show:true})}}/>
+            <TouchableOpacity style={styles.button} onPress={()=>{this.setState({show:true})}}>
+                <Image source={filterIcon} style={{width: 20, height: 20, marginBottom: -5}}></Image>
+                <Text style={styles.buttonText}>Filter</Text>
+            </TouchableOpacity>
+
+
             <Modal visible={this.state.show}>
                 <View style ={styles.filterPopup}>
                     <Text> Filter</Text>
                 </View>
+
+                <Button title = "Close Filter" onPress = {()=>{this.setState({show:false})}}/>
             </Modal>
 
-            <Button title = "Close Filter" onPress = {()=>{this.setState({show:false})}}/>
+            
+
             </View>
 
         )
@@ -101,6 +111,21 @@ const styles = StyleSheet.create({
     favouriteView: {
     },
 
+    button: {
+        alignItems: "center",
+        padding: 5,
+        height: 30,
+        flex: 1,
+        flexDirection: 'row',
+      },
+
+      buttonText: {
+        color: 'black',
+        fontSize: 16,
+        fontWeight: 'bold',
+    
+      }
+
     filterPopup:{
         width: 313,
         height: 394,
@@ -110,7 +135,6 @@ const styles = StyleSheet.create({
         borderRadius:33,
         borderWidth: 1
     },
-
 });
 
 

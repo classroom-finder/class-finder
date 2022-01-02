@@ -1,7 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { StyleSheet, Text, View, Button, FlatList, SafeAreaView, TouchableOpacity, Modal} from 'react-native';
-import { LecHall, HeaderBar } from './Components';
+import { StyleSheet, Text, View, Button, FlatList, SafeAreaView, TouchableOpacity, Image} from 'react-native';
+import { LecHall, HeaderBar, FilterButton } from './Components';
+
+
+const calendarIcon = require('./assets/calender-icon.png');
+
 
 export default function App() {
 
@@ -13,12 +17,12 @@ export default function App() {
 
       <View style={styles.filterAndTimeBar}>
         <TouchableOpacity style={styles.button}>
+          <Image source={calendarIcon} style={{width: 30, height: 30, marginRight: -5,}}></Image>
           <Text style={styles.buttonText}>Time</Text>
         </TouchableOpacity>
         <View style={{flex: 3}}></View>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Filter</Text>
-        </TouchableOpacity>
+        
+        <FilterButton/>
       </View>
 
       <View style={styles.listHalls}>
@@ -86,6 +90,7 @@ const styles = StyleSheet.create({
     padding: 5,
     height: 30,
     flex: 1,
+    flexDirection: 'row',
   },
 
   buttonText: {
