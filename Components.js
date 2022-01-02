@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Button, FlatList, SafeAreaView} from 'react-native';
+import {useState} from 'react';
+import { StyleSheet, Text, View, Image, Button, FlatList, SafeAreaView, Modal} from 'react-native';
+
 
 
 export class LecHall extends React.Component {
@@ -39,12 +41,25 @@ export class HeaderBar extends React.Component {
     }
 }
 
-export class filterButton extends React.Component {
+export class filterButton extends React.Component{
+    constructor(){
+        super();
+        this.state = {show:false}
+    }
     render() {
-        return 
-        <View>
+        return(
+            <View>
+            <Button title = "Filter" onPress={()=>{this.setState({show:true})}}/>
+            <Modal visible={this.state.show}>
+                <View style ={styles.filterPopup}>
+                    <Text> Filter</Text>
+                </View>
+            </Modal>
 
-        </View>
+            <Button title = "Close Filter" onPress = {()=>{this.setState({show:false})}}/>
+            </View>
+
+        )
     }
 }
 
@@ -86,10 +101,20 @@ const styles = StyleSheet.create({
     favouriteView: {
     },
 
+    filterPopup:{
+        width: 313,
+        height: 394,
+        left: 50%,
+        top: 50%,
+        backgroundColor: 'white',
+        borderRadius:33,
+        borderWidth: 1
+    },
+
 });
 
 
-// hi checking if this pushes
+
 
 
 

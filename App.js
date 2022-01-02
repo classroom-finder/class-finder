@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { StyleSheet, Text, View, Button, FlatList, SafeAreaView, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, Button, FlatList, SafeAreaView, TouchableOpacity, Modal} from 'react-native';
 import { LecHall, HeaderBar } from './Components';
 
 export default function App() {
