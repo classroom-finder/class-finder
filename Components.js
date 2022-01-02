@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Button, FlatList, SafeAreaView} from 'react-native';
+import { StyleSheet, Text, View, Image, Button, FlatList, SafeAreaView, Modal, TouchableOpacity} from 'react-native';
+
+const filterIcon = require('./assets/filter-icon.png');
 
 
 export class LecHall extends React.Component {
@@ -39,12 +41,31 @@ export class HeaderBar extends React.Component {
     }
 }
 
-export class filterButton extends React.Component {
+export class FilterButton extends React.Component{
+    constructor(){
+        super();
+        this.state = {show:false}
+    }
     render() {
-        return 
-        <View>
+        return(
+            <View>
+            <TouchableOpacity style={styles.button} onPress={()=>{this.setState({show:true})}}>
+                <Image source={filterIcon} style={{width: 20, height: 20, marginBottom: -5}}></Image>
+                <Text style={styles.buttonText}>Filter</Text>
+            </TouchableOpacity>
 
-        </View>
+            <Modal visible={this.state.show}>
+                <View style ={styles.filterPopup}>
+                    <Text> Filter</Text>
+                </View>
+
+                <Button title = "Close Filter" onPress = {()=>{this.setState({show:false})}}/>
+            </Modal>
+
+            
+            </View>
+
+        )
     }
 }
 
@@ -85,6 +106,21 @@ const styles = StyleSheet.create({
 
     favouriteView: {
     },
+
+    button: {
+        alignItems: "center",
+        padding: 5,
+        height: 30,
+        flex: 1,
+        flexDirection: 'row',
+      },
+
+      buttonText: {
+        color: 'black',
+        fontSize: 16,
+        fontWeight: 'bold',
+    
+      }
 
 });
 
