@@ -1,7 +1,9 @@
 import React from 'react';
+import {useState} from 'react';
 import { StyleSheet, Text, View, Image, Button, FlatList, SafeAreaView, Modal, TouchableOpacity} from 'react-native';
 
 const filterIcon = require('./assets/filter-icon.png');
+
 
 
 export class LecHall extends React.Component {
@@ -54,6 +56,7 @@ export class FilterButton extends React.Component{
                 <Text style={styles.buttonText}>Filter</Text>
             </TouchableOpacity>
 
+
             <Modal visible={this.state.show}>
                 <View style ={styles.filterPopup}>
                     <Text> Filter</Text>
@@ -63,6 +66,7 @@ export class FilterButton extends React.Component{
             </Modal>
 
             
+
             </View>
 
         )
@@ -122,10 +126,19 @@ const styles = StyleSheet.create({
     
       }
 
+    filterPopup:{
+        width: 313,
+        height: 394,
+        left: 50%,
+        top: 50%,
+        backgroundColor: 'white',
+        borderRadius:33,
+        borderWidth: 1
+    },
 });
 
 
-// hi checking if this pushes
+
 
 
 

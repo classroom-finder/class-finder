@@ -6,6 +6,7 @@ import { LecHall, HeaderBar, FilterButton } from './Components';
 
 const calendarIcon = require('./assets/calender-icon.png');
 
+
 export default function App() {
 
   return (
