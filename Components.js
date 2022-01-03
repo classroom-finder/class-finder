@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState} from 'react';
-import { StyleSheet, Text, View, Image, Button, FlatList, SafeAreaView, Modal, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, Image, Button, FlatList, SafeAreaView, Modal, TouchableOpacity, TextInput} from 'react-native';
 
 const filterIcon = require('./assets/filter-icon.png');
 
@@ -60,18 +60,71 @@ export class FilterButton extends React.Component{
             <Modal visible={this.state.show}>
                 <View style ={styles.filterPopup}>
                     <Text> Filter</Text>
+                    <FavouritesButton />
+                    <FilterEntries />
+                    <ApplyButton />
                 </View>
 
                 <Button title = "Close Filter" onPress = {()=>{this.setState({show:false})}}/>
             </Modal>
-
-            
-
             </View>
 
         )
     }
 }
+
+export class FavouritesButton extends React.Component{
+    render() {
+        return(
+            <View>
+                <TouchableOpacity styles = {styles.button}>
+                    <Image source = {checkboxIcon} style = {{width:10, height:10}}></Image>
+                    <Text style = {styles.favouritesOnlyText}>Favourites only</Text>
+                </TouchableOpacity>
+            </View>
+        )
+    }
+}
+
+export class FilterEntries extends React.Component{
+    constructor(){
+        const [building, setBuilding] = useState("");
+        const [distance, setDistance] = useState("");
+    }
+    render(){
+        return(
+            <View>
+                <Text> Preference of Building</Text>
+                <TextInput
+                multiline
+                style = {styles.textInput}
+                placeholder='Enter Preferred Buildings Here'
+                onChangeText={(input) => setBuilding(input)} />
+                
+                <Text> Preference of Building</Text>
+                <TextInput
+                multiline
+                style = {styles.textInput}
+                placeholder='Enter Max Distance'
+                onChangeText={(input) => setDistance(input)} />
+            </View>
+        );
+    }
+}
+
+export class ApplyButton extends React.Component{
+    render(){
+        return(
+            <View>
+                <TouchableOpacity styles = {styles.button}>
+                    <Text style = {styles.applyText}>Apply</Text>
+                </TouchableOpacity>
+            </View>
+        )
+    }
+}
+
+
 
 
 const styles = StyleSheet.create({
@@ -124,17 +177,35 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     
-      }
+      },
 
     filterPopup:{
         width: 313,
         height: 394,
-        left: 50%,
-        top: 50%,
+        left: 50,
+        top: 50,
         backgroundColor: 'white',
         borderRadius:33,
         borderWidth: 1
     },
+
+    favouritesOnlyText:{
+        color: 'black',
+        fontSize: 12,
+        fontWeight: "normal"
+    },
+    textInput:{
+        color: 'black',
+        fontSize: 12,
+        fontWeight: "normal"
+    },
+
+    applyText:{
+        color: 'black',
+        fontSize: 16,
+        fontWeight: 600,
+    }
+
 });
 
 
