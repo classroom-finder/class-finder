@@ -2,6 +2,8 @@ import React from 'react'
 import { StyleSheet, Text, View, Button, FlatList, SafeAreaView, TouchableOpacity} from 'react-native';
 import { LecHall, HeaderBar, filterButton, dateButton } from './Components';
 
+// Need to import the new_json.json but idk how to do that so we will get back to that later
+
 export default Home = () => {
     return (
     <View style={styles.container}>

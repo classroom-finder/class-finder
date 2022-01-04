@@ -1,6 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Button, FlatList, SafeAreaView} from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import colors from './assets/colors/colors';
 
+AntDesign.loadFont();
+Ionicons.loadFont();
 
 export class LecHall extends React.Component {
     constructor(props) {
@@ -29,11 +34,14 @@ export class LecHall extends React.Component {
     }
 }
 
+// This is the header
 export class HeaderBar extends React.Component {
     render() {
         return(
             <View style={styles.headerBar}>
                 <Text style={styles.headerBarText}>LECTURE HALLS</Text>
+                <AntDesign style={styles.dateIcon} name="calendar" size={30} color={colors.textBlack} />
+                <Ionicons style={styles.filterIcon} name="filter" size={30} color={colors.textBlack} />
             </View>
         );
     }
@@ -67,6 +75,14 @@ const styles = StyleSheet.create({
     headerBar: {
         paddingTop: 80,
         paddingBottom: 20,
+    },
+    dateIcon: {
+        paddingTop: 15,
+        right: 50,
+    },
+    filterIcon: {
+        paddingTop: 15,
+        left: 15,
     },
 
     lecHallItem: {
