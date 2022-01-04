@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, Button, FlatList, SafeAreaView} from 're
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import colors from './assets/colors/colors';
+import { CurrentRenderContext } from '@react-navigation/native';
 
 AntDesign.loadFont();
 Ionicons.loadFont();
@@ -34,7 +35,7 @@ export class LecHall extends React.Component {
     }
 }
 
-// This is the header
+// This is the header also includes the calendar and filter button (need to figure that out)
 export class HeaderBar extends React.Component {
     render() {
         return(
@@ -71,17 +72,20 @@ const styles = StyleSheet.create({
         color: 'black',
         fontSize: 30,
         fontWeight: 'bold',
+        left: 30,
     },
+
     headerBar: {
         paddingTop: 80,
         paddingBottom: 20,
+        flexDirection: 'row',
     },
     dateIcon: {
-        paddingTop: 15,
-        right: 50,
+        paddingTop: 40,
+        right: 260,
     },
     filterIcon: {
-        paddingTop: 15,
+        paddingTop: 40,
         left: 15,
     },
 
