@@ -52,7 +52,7 @@ export class dateButton extends React.Component {
     render() {
         return
         <View>
-            
+
         </View>
     }
 }
@@ -81,7 +81,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         paddingTop: 20,
         paddingBottom: 20,
-        
     },
 
     imageView: {
