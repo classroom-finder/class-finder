@@ -86,12 +86,10 @@ export class FavouritesButton extends React.Component{
     }
 }
 
-export class FilterEntries extends React.Component{
-    constructor(){
-        const [building, setBuilding] = useState("");
-        const [distance, setDistance] = useState("");
-    }
-    render(){
+export function FilterEntries() {
+    const [building, setBuilding] = useState("");
+    const [distance, setDistance] = useState("");
+    render() {
         return(
             <View>
                 <Text> Preference of Building</Text>
@@ -109,7 +107,7 @@ export class FilterEntries extends React.Component{
                 onChangeText={(input) => setDistance(input)} />
             </View>
         );
-    }
+    };
 }
 
 export class ApplyButton extends React.Component{
