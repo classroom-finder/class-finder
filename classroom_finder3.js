@@ -8,19 +8,31 @@ var json = require('./new_json.json'); //with path
 
 //REQUIRES: end time must be less than start time
 let start_time = "08:30" //start time is when the person wants to go study
-let end_time = "17:20" // end time is when the person will be done studying
+let end_time = "16:20" // end time is when the person will be done studying
 
 // NOTES: !!!
 // maybe we can use a dropdown menu to let them choose start and end times so it's easier to parse the data
 
 
-const daysOfWeek = ["M", "T", "W", "Th", "F"]
+const daysOfWeek = ["S", "M", "T", "W", "Th", "F", "S"]
 // NOTES: !!!
 // again, a dropodown that lets them choose either the day of the week or a day on the calendar and we can use 
 //   the date module to determine which day of the week it is. 
 // disallow options for choosing the weekends.
 
-let day = daysOfWeek[0]
+
+// dynamic code (connie)
+const d = new Date();
+const weekDay = d.getDay();
+let day = daysOfWeek[weekDay];
+
+const currentHour = d.getHours();
+const currentMinute = d.getMinutes();
+
+//curent time as a string in format "hh:mm"
+const currentTime = `${currentHour}:${currentMinute}`;
+//et start_time = currentTime;
+
 
 // ===ACTUAL CODE===========================================================================================================
 
@@ -112,9 +124,13 @@ let availableClassrooms = [];
 //     }}
 
 for (const [classroom, value] of Object.entries(json)){
+    if (weekDay == 0 || weekDay == 6) {
+        break
+    }
+
     if (isOccupied(value) === false) {
         availableClassrooms.push(classroom)
     }
 }
 
-console.log(availableClassrooms)
+console.log(availableClassrooms);
