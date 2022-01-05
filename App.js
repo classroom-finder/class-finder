@@ -8,6 +8,8 @@ import colors from './assets/colors/colors';
 
 import Home from './Home';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
+import FilterPage from './FilterPage';
+import DatePage from './DatePage';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +19,18 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Home" 
         component={Home} 
+        options = {{
+          headerShown: false,
+        }}
+        />
+        <Stack.Screen name="FilterPage" 
+        component={FilterPage} 
+        options = {{
+          headerShown: false,
+        }}
+        />
+        <Stack.Screen name="DatePage" 
+        component={DatePage} 
         options = {{
           headerShown: false,
         }}

@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Button, FlatList, SafeAreaView} from 'react-native';
+import { StyleSheet, Text, View, Image, Button, FlatList, SafeAreaView, TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import colors from './assets/colors/colors';
-import { CurrentRenderContext } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 AntDesign.loadFont();
 Ionicons.loadFont();
@@ -36,13 +37,18 @@ export class LecHall extends React.Component {
 }
 
 // This is the header also includes the calendar and filter button (need to figure that out)
-export class HeaderBar extends React.Component {
+export class HeaderBar extends React.Component { 
     render() {
         return(
             <View style={styles.headerBar}>
                 <Text style={styles.headerBarText}>LECTURE HALLS</Text>
-                <AntDesign style={styles.dateIcon} name="calendar" size={30} color={colors.textBlack} />
-                <Ionicons style={styles.filterIcon} name="filter" size={30} color={colors.textBlack} />
+                <TouchableOpacity onPress={()=> navigation.navigate('DatePage')}>
+                    <AntDesign style={styles.dateIcon} name="calendar" size={30} color={colors.textBlack} />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=> navigation.navigate('FilterPage')}>
+                    <Ionicons style={styles.filterIcon} name="filter" size={30} color={colors.textBlack} />
+                </TouchableOpacity>
+                
             </View>
         );
     }

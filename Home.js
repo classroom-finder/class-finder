@@ -1,25 +1,26 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button, FlatList, SafeAreaView, TouchableOpacity} from 'react-native';
 import { LecHall, HeaderBar, filterButton, dateButton } from './Components';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import colors from './assets/colors/colors';
 
 // Need to import the new_json.json but idk how to do that so we will get back to that later
 
-export default Home = () => {
+export default Home = ({ navigation }) => {
     return (
     <View style={styles.container}>
-       <View>
-         <HeaderBar/>
-       </View>
-
-       <View style={styles.filterAndTimeBar}>
-         <TouchableOpacity style={styles.button}>
-           <Text style={styles.buttonText}>Time</Text>
-         </TouchableOpacity>
-
-         <TouchableOpacity style={styles.button}>
-           <Text>Filter!</Text>
-         </TouchableOpacity>
-       </View>
+       <View style={styles.headerBar}>
+          <Text style={styles.headerBarText}>LECTURE HALLS</Text>
+            <TouchableOpacity onPress={()=> navigation.navigate('DatePage')}>
+              <AntDesign style={styles.dateIcon} name="calendar" size={30} color={colors.textBlack} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=> navigation.navigate('FilterPage')}>
+              <Ionicons style={styles.filterIcon} name="filter" size={30} color={colors.textBlack} />
+            </TouchableOpacity>               
+        </View>
 
        <SafeAreaView style={styles.listHalls}>
         <FlatList
@@ -45,6 +46,27 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     paddingBottom: 10,
   },
+
+  headerBarText: {
+    color: 'black',
+    fontSize: 30,
+    fontWeight: 'bold',
+    left: 30,
+},
+
+headerBar: {
+    paddingTop: 80,
+    paddingBottom: 20,
+    flexDirection: 'row',
+},
+dateIcon: {
+    paddingTop: 40,
+    right: 260,
+},
+filterIcon: {
+    paddingTop: 40,
+    left: 15,
+},
 
   textInList: {
     fontSize: 16,
