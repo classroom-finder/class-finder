@@ -78,7 +78,7 @@ export class FavouritesButton extends React.Component{
         return(
             <View>
                 <TouchableOpacity styles = {styles.button}>
-                    <Image source = {checkboxIcon} style = {{width:10, height:10}}></Image>
+                    {/*<Image source = {checkboxIcon} style = {{width:10, height:10}}></Image>*/}
                     <Text style = {styles.favouritesOnlyText}>Favourites only</Text>
                 </TouchableOpacity>
             </View>
