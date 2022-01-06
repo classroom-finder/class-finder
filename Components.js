@@ -3,7 +3,7 @@ import {useState} from 'react';
 import { StyleSheet, Text, View, Image, Button, FlatList, SafeAreaView, Modal, TouchableOpacity, TextInput} from 'react-native';
 
 const filterIcon = require('./assets/filter-icon.png');
-
+const calendarIcon = require('./assets/calender-icon.png');
 
 
 export class LecHall extends React.Component {
@@ -43,6 +43,7 @@ export class HeaderBar extends React.Component {
     }
 }
 
+// The Filter Button
 export class FilterButton extends React.Component{
     constructor(){
         super();
@@ -56,12 +57,46 @@ export class FilterButton extends React.Component{
                 <Text style={styles.buttonText}>Filter</Text>
             </TouchableOpacity>
 
+            <Modal visible={this.state.show}>
+                <View style ={styles.filterPopup}>
+                    <Text style={styles.Title}> Filter</Text>
+                    <FavouritesButton />
+                    <FilterEntries />
+                    <ApplyButton />
+                </View>
+
+                <Button title = "Close Filter" onPress = {()=>{this.setState({show:false})}}/>
+            </Modal>
+            </View>
+
+        )
+    }
+}
+
+// The Time Button
+export class TimeButton extends React.Component{
+    constructor(){
+        super();
+        this.state = {show:false}
+    }
+    render() {
+        return(
+            <View>
+            {/* <TouchableOpacity style={styles.button} onPress={()=>{this.setState({show:true})}}>
+                <Image source={calendarIcon} style={{width: 30, height: 30, marginRight: -5,}}></Image>
+                <Text style={styles.buttonText}>Time</Text>
+            </TouchableOpacity> */}
+
+            <TouchableOpacity style={styles.button} onPress={()=>{this.setState({show:true})}}>
+                <Image source={calendarIcon} style={{width: 30, height: 30, marginRight: -5,}}></Image>
+                <Text style={styles.buttonText}>Time</Text>
+            </TouchableOpacity>
+
 
             <Modal visible={this.state.show}>
                 <View style ={styles.filterPopup}>
-                    <Text> Filter</Text>
-                    <FavouritesButton />
-                    <FilterEntries />
+                    <Text style={styles.Title}>Dates and Times</Text>
+                    <DateEntries />
                     <ApplyButton />
                 </View>
 
@@ -86,28 +121,117 @@ export class FavouritesButton extends React.Component{
     }
 }
 
-export function FilterEntries() {
-    const [building, setBuilding] = useState("");
-    const [distance, setDistance] = useState("");
+class FilterEntries extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            building: '',
+            maxDistance: ''
+        }
+    }
     render() {
         return(
             <View>
+                <View style={styles.EachRow}>
                 <Text> Preference of Building</Text>
                 <TextInput
-                multiline
-                style = {styles.textInput}
-                placeholder='Enter Preferred Buildings Here'
-                onChangeText={(input) => setBuilding(input)} />
-                
-                <Text> Preference of Building</Text>
-                <TextInput
-                multiline
-                style = {styles.textInput}
-                placeholder='Enter Max Distance'
-                onChangeText={(input) => setDistance(input)} />
+                    multiline
+                    style = {styles.textInput}
+                    placeholder='Building'
+                    onChangeText={(input) => {this.setState ({building:input})}} />
+                </View>
+
+                <View style={styles.EachRow}>
+                    <Text> Distance</Text>
+                    <TextInput
+                    multiline
+                    style = {styles.textInput}
+                    placeholder='Enter Max Distance'
+                    onChangeText={(input) => {this.setState ({maxDistance:input})}} />
+                </View>    
             </View>
-        );
-    };
+        )
+    }
+}
+
+// this is the stuff for entering dates
+class DateEntries extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            month: '',
+            day: '',
+            startHour: '',
+            startMinute: '',
+            endHour:'',
+            endMinute: ''
+        }
+    }
+    render() {
+        return(
+            <View>
+
+                <View style={styles.EachRow}>
+                    <Text>Month</Text>
+                    <TextInput 
+                        class="month" 
+                        multiline
+                        style={styles.textInput}
+                        placeholder=' Enter month here (2 digits)'
+                        onChangeText={(input) => {this.setState ({month:input})}}
+                    />
+                </View>
+
+                <View style={styles.EachRow}>
+                    <Text>Day</Text>
+                    <TextInput  
+                        multiline
+                        style={styles.textInput}
+                        placeholder=' Enter day here (2 digits)'
+                        onChangeText={(input) => {this.setState ({day:input})}}
+                    />
+                </View>     
+
+                <View style={styles.EachRow}>
+                    <Text>Start </Text>
+                    <Text>Hour</Text>
+                    <TextInput  
+                        multiline
+                        style={styles.textInput} 
+                        placeholder=' (2 digits) '
+                        onChangeText={(input) => {this.setState ({startHour:input})}}
+                    />  
+
+                    <Text style={styles.Minute}>     Minute</Text>
+                    <TextInput  
+                        multiline
+                        style={styles.textInput} 
+                        placeholder=' (2 digits)'
+                        onChangeText={(input) => {this.setState ({startMinute:input})}}
+                    />
+                </View>
+
+                <View style={styles.EachRow}>
+                    <Text>End </Text>
+                    <Text>Hour</Text>
+                    <TextInput  
+                        multiline
+                        style={styles.textInput} 
+                        placeholder=' (2 digits) '
+                        onChangeText={(input) => {this.setState ({endHour:input})}}
+                    />  
+
+                    <Text style={styles.Minute}>      Minute</Text>
+                    <TextInput  
+                        multiline
+                        style={styles.textInput} 
+                        placeholder=' (2 digits)'
+                        onChangeText={(input) => {this.setState ({endMinute:input})}}
+                    /> 
+                </View>            
+            </View>
+        )
+    }
 }
 
 export class ApplyButton extends React.Component{
@@ -151,6 +275,21 @@ const styles = StyleSheet.create({
         
     },
 
+    Title: {
+        paddingTop: 10,
+        textAlign: "center",
+        fontSize: 30,
+        fontWeight: 'bold',
+    },
+
+
+    EachRow: {
+        flexDirection: 'row', 
+        flexWrap: 'wrap',
+        paddingTop: 30,
+        padding: 15,
+    },
+
     imageView: {
       
     },
@@ -174,7 +313,6 @@ const styles = StyleSheet.create({
         color: 'black',
         fontSize: 16,
         fontWeight: 'bold',
-    
       },
 
     filterPopup:{
@@ -182,26 +320,32 @@ const styles = StyleSheet.create({
         height: 394,
         left: 50,
         top: 50,
-        backgroundColor: 'white',
+        backgroundColor: '#FED440',
+        opacity: 0.83,
         borderRadius:33,
         borderWidth: 1
     },
 
     favouritesOnlyText:{
         color: 'black',
-        fontSize: 12,
-        fontWeight: "normal"
+        fontSize: 16,
+        fontWeight: "normal",
+        textAlign: "center",
+        paddingTop: 20
     },
     textInput:{
         color: 'black',
-        fontSize: 12,
-        fontWeight: "normal"
+        fontSize: 14,
+        fontWeight: "normal",
+        left: 5,
     },
 
     applyText:{
         color: 'black',
         fontSize: 16,
-        fontWeight: 600,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        paddingTop: 10,
     }
 
 });

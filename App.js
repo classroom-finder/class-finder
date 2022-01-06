@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { StyleSheet, Text, View, Button, FlatList, SafeAreaView, TouchableOpacity, Image} from 'react-native';
-import { LecHall, HeaderBar, FilterButton } from './Components';
+import { LecHall, HeaderBar, FilterButton, TimeButton } from './Components';
 
 
 const calendarIcon = require('./assets/calender-icon.png');
@@ -16,10 +16,13 @@ export default function App() {
       </View>
 
       <View style={styles.filterAndTimeBar}>
-        <TouchableOpacity style={styles.button}>
+        {/* <TouchableOpacity style={styles.button}>
           <Image source={calendarIcon} style={{width: 30, height: 30, marginRight: -5,}}></Image>
           <Text style={styles.buttonText}>Time</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
+
+        <TimeButton/>
+
         <View style={{flex: 3}}></View>
         
         <FilterButton/>
