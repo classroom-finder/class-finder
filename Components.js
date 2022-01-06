@@ -57,15 +57,19 @@ export class FilterButton extends React.Component{
                 <Text style={styles.buttonText}>Filter</Text>
             </TouchableOpacity>
 
-            <Modal visible={this.state.show}>
-                <View style ={styles.filterPopup}>
-                    <Text style={styles.Title}> Filter</Text>
-                    <FavouritesButton />
-                    <FilterEntries />
-                    <ApplyButton />
+            <Modal 
+            visible={this.state.show}
+            transparent={this.state.show}>
+                <View style={{backgroundColor: '#000000aa', flex:1}}>
+                    <View style ={styles.filterPopup}>
+                        <Text style={styles.Title}> Filter</Text>
+                        <FavouritesButton />
+                        <FilterEntries />
+                        <ApplyButton />
+                        <Button title = "Close Filter" onPress = {()=>{this.setState({show:false})}}/>
+                    </View>
                 </View>
 
-                <Button title = "Close Filter" onPress = {()=>{this.setState({show:false})}}/>
             </Modal>
             </View>
 
@@ -93,14 +97,18 @@ export class TimeButton extends React.Component{
             </TouchableOpacity>
 
 
-            <Modal visible={this.state.show}>
-                <View style ={styles.filterPopup}>
-                    <Text style={styles.Title}>Dates and Times</Text>
-                    <DateEntries />
-                    <ApplyButton />
+            <Modal 
+            visible={this.state.show}
+            transparent={this.state.show}>
+                <View style={{backgroundColor: '#000000aa', flex:1}}> 
+                    <View style ={styles.filterPopup}>
+                        <Text style={styles.Title}>Dates and Times</Text>
+                        <DateEntries />
+                        <ApplyButton />
+                        <Button title = "Close Filter" onPress = {()=>{this.setState({show:false})}}/>
+                    </View>
                 </View>
 
-                <Button title = "Close Filter" onPress = {()=>{this.setState({show:false})}}/>
             </Modal>
             </View>
 
@@ -321,7 +329,6 @@ const styles = StyleSheet.create({
         left: 50,
         top: 50,
         backgroundColor: '#FED440',
-        opacity: 0.83,
         borderRadius:33,
         borderWidth: 1
     },
